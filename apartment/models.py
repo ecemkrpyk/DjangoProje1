@@ -21,3 +21,27 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title  #titleyi döndürür
+
+
+
+class Apartment(models.Model):
+    STATUS = (
+        ('True', 'Evet'),      #combobox
+        ('False', 'Hayır'),
+
+    )
+    #category tablosu ile bir ilişki kuruyoruz, category_id eklenmiş olur
+    category=models.ForeignKey(Category,on_delete=models.CASCADE)
+    title = models.CharField(max_length=30)
+    keywords = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
+    image = models.ImageField(blank=True, upload_to='images/') #klasör ismini değiştirebilirsin
+    price=models.FloatField()
+    amount=models.IntegerField()
+    detail=models.TextField()
+    status = models.CharField(max_length=10, choices=STATUS)
+    create_at = models.DateTimeField(auto_now_add=True)   #o andaki tarihi ekle
+    update_at = models.DateTimeField(auto_now=True)    #her zamanki tarihi ekle
+
+    def __str__(self):
+        return self.title  #titleyi döndürür
