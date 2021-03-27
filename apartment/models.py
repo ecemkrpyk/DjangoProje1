@@ -1,8 +1,6 @@
 from django.db import models
 
-
-#category tablosunu oluşturucaz, id eklemiyoruz otomatik ekler
-
+# Create your models here.
 class Category(models.Model):
     STATUS = (
         ('True', 'Evet'),      #combobox
