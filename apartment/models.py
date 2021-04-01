@@ -7,7 +7,7 @@ class Category(models.Model):
         ('False', 'Hayır'),
 
     )
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=100)
     keywords = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     image = models.ImageField(blank=True, upload_to='images/')
@@ -32,7 +32,7 @@ class Apartment(models.Model):
     )
     #category tablosu ile bir ilişki kuruyoruz, category_id eklenmiş olur
     category=models.ForeignKey(Category,on_delete=models.CASCADE)
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=150)
     keywords = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     image = models.ImageField(blank=True, upload_to='images/') #klasör ismini değiştirebilirsin
@@ -45,3 +45,19 @@ class Apartment(models.Model):
 
     def __str__(self):
         return self.title  #titleyi döndürür
+
+
+class Images(models.Model):
+    apartment = models.ForeignKey(Apartment, on_delete=models.CASCADE)
+    title=models.CharField(max_length=50, blank=True) #blank true boş geçmemize izin verir
+    image=models.ImageField(blank=True, upload_to='images/')
+    def __str__(self):
+        return self.title
+
+
+
+
+
+
+
+
