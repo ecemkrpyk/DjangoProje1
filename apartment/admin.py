@@ -3,6 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from apartment.models import Category, Apartment, Images
 
+
 class ApartmentImageInline(admin.TabularInline):
     model = Images   #ımages tablosundan
     extra = 5   #galeri extra kaç resimden oluştuğu
@@ -23,9 +24,12 @@ class ImagesAdmin(admin.ModelAdmin):
     list_display = ['title', 'apartment', 'image_tag']
     readonly_fields = ('image_tag',)
 
+
+
 admin.site.register(Category, CategoryAdmin)  #categorynin adminde gözükmesini sağlar
 admin.site.register(Apartment, ApartmentAdmin)
 admin.site.register(Images, ImagesAdmin)
+
 
 
 

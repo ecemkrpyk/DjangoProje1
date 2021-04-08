@@ -1,6 +1,10 @@
 {%  load static %}
+            {% if page %}
+                <div class="nav-item">
+            {% else %}
+                <div class="nav-item"> <!-- burada alt sayfalarda hali -->
+            {% endif %}
 
-<div class="nav-item">
             <div class="container">
                 <div class="nav-depart">
                     <div class="depart-btn">
@@ -20,16 +24,16 @@
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="./index.html">Home</a></li>
-                        <li><a href="./shop.html">Shop</a></li>
-                        <li><a href="#">Collection</a>
+                        <li class="active"><a href="/">Anasayfa</a></li>
+                        <li><a href="/hakkimizda">Hakkımızda</a></li>
+                        <li><a href="/referanslar">Referanslar</a>
                             <ul class="dropdown">
                                 <li><a href="#">Men's</a></li>
                                 <li><a href="#">Women's</a></li>
                                 <li><a href="#">Kid's</a></li>
                             </ul>
                         </li>
-                        <li><a href="./blog.html">Blog</a></li>
+                        <li><a href="/iletisim">İletişim</a></li>
                         <li><a href="./contact.html">Contact</a></li>
                         <li><a href="#">Pages</a>
                             <ul class="dropdown">

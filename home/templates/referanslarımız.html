@@ -1,0 +1,41 @@
+{%  extends "homebase.html" %}
+
+{% block title %} Referanslarımız - {{ setting.company }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %}{{ setting.description }}{% endblock %}
+
+{% block head %}   <!-- icon eklendi -->
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'  />
+
+{% endblock %}
+
+{% block sidebar %}
+    {% include "sidebar.html" %}
+{% endblock %}
+
+
+
+{% block content %}
+    <div id="breadcrumb">
+       <div class="container">
+           <ul class="breadcrumb">
+               <li> <a href="/">Anasayfa</a></li>
+               <li class="active" > Referanslarımız</li>
+           </ul>
+       </div>
+    </div>
+
+    <div class="section">
+    <div class="container" >
+        <div class="row">
+            {{ setting.references |safe }} <!--safe kullanmazsan html kodları ile birlikte anlamsız gözükür -->
+
+        </div>
+
+    </div>
+    </div>
+
+
+
+
+{% endblock %}
