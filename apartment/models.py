@@ -11,9 +11,9 @@ class Category(models.Model):
         ('False', 'Hayır'),
 
     )
-    title = models.CharField(max_length=100)
-    keywords = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
+    title = models.CharField(blank=True,max_length=100)
+    keywords = models.CharField(blank=True,max_length=255)
+    description = models.CharField(blank=True,max_length=255)
     image = models.ImageField(blank=True, upload_to='images/')
     status = models.CharField(max_length=10, choices=STATUS)
 
@@ -40,13 +40,14 @@ class Apartment(models.Model):
     )
     #category tablosu ile bir ilişki kuruyoruz, category_id eklenmiş olur
     category=models.ForeignKey(Category,on_delete=models.CASCADE)
-    title = models.CharField(max_length=150)
-    keywords = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
+    title = models.CharField(blank=True,max_length=150)
+    keywords = models.CharField(blank=True,max_length=255)
+    description = models.CharField(blank=True,max_length=255)
     image = models.ImageField(blank=True, upload_to='images/') #klasör ismini değiştirebilirsin
     price=models.FloatField()
     amount=models.IntegerField()
     detail= RichTextUploadingField()
+    slug = models.SlugField(max_length=150,blank=True)
     status = models.CharField(max_length=10, choices=STATUS)
     create_at = models.DateTimeField(auto_now_add=True)   #o andaki tarihi ekle
     update_at = models.DateTimeField(auto_now=True)    #her zamanki tarihi ekle
