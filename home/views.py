@@ -1,9 +1,11 @@
+from unicodedata import category
+
 from django.core.checks import messages
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
-from apartment.models import Apartment
+from apartment.models import Apartment, Category
 from home.models import Setting, ContactForm, ContactFormMessage
 from django.contrib import messages
 
@@ -11,7 +13,12 @@ from django.contrib import messages
 def index(request):
     setting = Setting.objects.get(pk=1)
     sliderdata= Apartment.objects.all()[:4] #4 tane veri getirir
-    context = {'setting': setting, 'page' : 'home','sliderdata':sliderdata}
+    category= Category.objects.all()
+
+    context = {'setting': setting,
+               'category': category,
+               'page' : 'home',
+               'sliderdata':sliderdata}
     return render(request, 'index.html', context)
 
 

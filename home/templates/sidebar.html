@@ -1,27 +1,38 @@
-{%  load static %}
-            {% if page %}
-                <div class="nav-item">
-            {% else %}
-                <div class="nav-item"> <!-- burada alt sayfalarda hali -->
-            {% endif %}
-
+<div class="nav-item">
             <div class="container">
                 <div class="nav-depart">
                     <div class="depart-btn">
                         <i class="ti-menu"></i>
                         <span>All departments</span>
-                        <ul class="depart-hover">
-                            <li class="active"><a href="#">Women’s Clothing</a></li>
-                            <li><a href="#">Men’s Clothing</a></li>
-                            <li><a href="#">Underwear</a></li>
-                            <li><a href="#">Kid's Clothing</a></li>
-                            <li><a href="#">Brand Fashion</a></li>
-                            <li><a href="#">Accessories/Shoes</a></li>
-                            <li><a href="#">Luxury Brands</a></li>
-                            <li><a href="#">Brand Outdoor Apparel</a></li>
+
+
+
+                      <ul class="depart-hover">
+
+                          {% load mptt_tags %}
+
+                            {% recursetree category %}
+                             <li class="active">  <a href="/category/{{ node.slug }}" class="dropdown-toggle"  {% if not node.is_leaf_node %} data-toggle="dropdown" aria-expanded="true"  {% endif %}> {{ node.title }}</a>
+
+                              {% if not node.is_leaf_node %}
+
+                               <ul class="dropdown">
+                                  <li><a href="/category/{{ node.slug }}">{{ children }}</a></li>
+                               </ul>
+
+                             {% endif %}
+
+
+
+                             </li>
+
+
+                        {% endrecursetree %}
+
                         </ul>
                     </div>
                 </div>
+
                 <nav class="nav-menu mobile-menu">
                     <ul>
                         <li class="active"><a href="/">Anasayfa</a></li>
