@@ -14,11 +14,13 @@ def index(request):
     setting = Setting.objects.get(pk=1)
     sliderdata= Apartment.objects.all()[:4] #4 tane veri getirir
     category= Category.objects.all()
+    apartments= Apartment.objects.all()
 
     context = {'setting': setting,
                'category': category,
-               'page' : 'home',
-               'sliderdata':sliderdata}
+               'apartments': apartments,
+               'page': 'home',
+               'sliderdata': sliderdata}
     return render(request, 'index.html', context)
 
 
@@ -52,3 +54,15 @@ def iletisim(request):
     form = ContactForm()
     context = {'setting': setting, 'form': form}
     return render(request, 'iletisim.html', context)
+
+
+def category_apartments(request, id, slug):
+    category = Category.objects.all()
+    categorydata = Category.objects.get(pk=id)
+    apartments=Apartment.objects.filter(category_id=id)
+
+    context= {'apartments': apartments,
+              'category': category,
+              'categorydata': categorydata
+             }
+    return render (request, 'apartments.html', context)
