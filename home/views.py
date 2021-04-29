@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
-from apartment.models import Apartment, Category
+from apartment.models import Apartment, Category, Images
 from home.models import Setting, ContactForm, ContactFormMessage
 from django.contrib import messages
 
@@ -73,3 +73,26 @@ def category_apartments(request, id, slug):
               'categorydata': categorydata
              }
     return render (request, 'apartments.html', context)
+
+def apartment_detail(request,id, slug):
+    category = Category.objects.all()
+    apartment = Apartment.objects.get(pk=id)
+    images= Images.objects.filter(apartment_id=id)
+    context = {'apartment': apartment,
+               'category': category,
+               'images':images,
+               }
+    return render (request, 'apartment_detail.html',context) #fonksiyonu çağırma
+
+
+
+
+
+
+
+
+
+
+
+
+
