@@ -14,13 +14,20 @@ def index(request):
     setting = Setting.objects.get(pk=1)
     sliderdata= Apartment.objects.all()[:4] #4 tane veri getirir
     category= Category.objects.all()
-    apartments= Apartment.objects.all()
+    dayapartments=Apartment.objects.all()[:4]
+    lastapartments = Apartment.objects.all().order_by('-id')[:4]
+    randomapartments = Apartment.objects.all().order_by('?')[:4]
+
+
 
     context = {'setting': setting,
                'category': category,
-               'apartments': apartments,
                'page': 'home',
-               'sliderdata': sliderdata}
+               'sliderdata': sliderdata,
+               'dayapartments': dayapartments,
+               'lastapartments': lastapartments,
+               'randomapartments': randomapartments
+               }
     return render(request, 'index.html', context)
 
 
