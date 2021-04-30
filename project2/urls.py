@@ -33,6 +33,7 @@ urlpatterns = [
     path('category/<int:id>/<slug:slug>', views.category_apartments, name='category_apartments'),
     path('apartment/<int:id>/<slug:slug>', views.apartment_detail, name='apartment_detail'),
     path('search/', views.apartment_search, name='apartment_search'),
+    path('search_auto/', views.apartment_search_auto, name='apartment_search_auto'),
 
 ]
 

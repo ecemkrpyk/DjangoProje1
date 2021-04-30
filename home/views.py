@@ -1,3 +1,4 @@
+import json
 from unicodedata import category
 
 from django.core.checks import messages
@@ -94,6 +95,7 @@ def apartment_search(request):
         if form.is_valid():
             category=Category.objects.all()
             query=form.cleaned_data['query'] #veriyi aldık
+
             apartments=Apartment.objects.filter(title__icontains=query) #büyük küçük harf dikkate almadan arama yapar
 
             context={'apartments': apartments,
@@ -102,6 +104,39 @@ def apartment_search(request):
             return render(request, 'apartment_search.html',context)
 
         return  HttpResponseRedirect('/')
+
+
+def apartment_search_auto(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '') #query
+        apartments = Apartment.objects.filter(title__icontains=q)
+
+        results = []
+        for rs in apartments:
+            apartment_json = {}
+            apartment_json = rs.title
+            results.append(apartment_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
