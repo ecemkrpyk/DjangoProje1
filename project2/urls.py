@@ -32,6 +32,7 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('category/<int:id>/<slug:slug>', views.category_apartments, name='category_apartments'),
     path('apartment/<int:id>/<slug:slug>', views.apartment_detail, name='apartment_detail'),
+    path('search/', views.apartment_search, name='apartment_search'),
 
 ]
 

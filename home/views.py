@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
 from apartment.models import Apartment, Category, Images, Comment
+from home.forms import SearchForm
 from home.models import Setting, ContactForm, ContactFormMessage
 from django.contrib import messages
 
@@ -86,6 +87,21 @@ def apartment_detail(request,id, slug):
                'comments':comments,
                }
     return render (request, 'apartment_detail.html',context) #fonksiyonu çağırma
+
+def apartment_search(request):
+    if request.method=='POST':  #form post edildiyse
+        form= SearchForm(request.POST)
+        if form.is_valid():
+            category=Category.objects.all()
+            query=form.cleaned_data['query'] #veriyi aldık
+            apartments=Apartment.objects.filter(title__icontains=query) #büyük küçük harf dikkate almadan arama yapar
+
+            context={'apartments': apartments,
+                     'category': category,
+                    }
+            return render(request, 'apartment_search.html',context)
+
+        return  HttpResponseRedirect('/')
 
 
 

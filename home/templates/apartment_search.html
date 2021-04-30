@@ -1,0 +1,55 @@
+{%  extends "homebase.html" %}
+
+{% block title %} Search Results {% endblock %}
+{% block keywords %} {{ categorydata.keywords }} {% endblock %}
+{% block description %}{{ categorydata.description }}{% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'  />
+
+{% endblock %}
+
+{% block sidebar %}
+    {% include "sidebar.html" %}
+{% endblock %}
+
+
+
+{% block content %}
+    <div id="breadcrumb">
+       <div class="container">
+           <ul class="breadcrumb">
+               <li> <a href="/">Anasayfa</a></li>
+               <li class="active" > {{ categorydata.title }}</li>
+           </ul>
+       </div>
+    </div>
+
+    <div class="section">
+    <div class="container" >
+        <div class="row">
+          <table cellpadding="3" width="1200">
+              <tr>
+                  <th>Image</th>
+                   <th>Apartment Name</th>
+                   <th>Category</th>
+                   <th>Price</th>
+              </tr>
+              {% for rs in apartments %}
+                  <tr>
+                      <td> <a href="/aparment/{{ rs.id }}/{{ rs.slug }}"> <img src="{{ rs.image.url }}" style="height: 200px" alt=""></a> </td>
+                      <td> <h4 class="apartment-name"><a href="/aparment/{{ rs.id }}/{{ rs.slug }}"> {{ rs.title }}</a> </h4></td>
+                      <td> <a href="/category/{{ rs.category.id }}/{{ rs.category.slug }}"> {{ rs.category }}</a> </td>
+                      <td><h4>${{ rs.price }}</h4> </td>
+                  </tr>
+
+              {% endfor %}
+
+          </table>
+        </div>
+
+    </div>
+    </div>
+
+
+{% endblock %}
