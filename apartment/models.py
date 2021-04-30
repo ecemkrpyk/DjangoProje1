@@ -3,6 +3,7 @@ from django.db import models
 
 # Create your models here.
 from django.forms import ModelForm
+from django.urls import reverse
 from django.utils.safestring import mark_safe
 from ckeditor_uploader.fields import RichTextUploadingField
 from mptt.fields import TreeForeignKey
@@ -21,7 +22,7 @@ class Category(MPTTModel):
     image = models.ImageField(blank=True, upload_to='images/')
     status = models.CharField(max_length=10, choices=STATUS)
 
-    slug = models.SlugField()
+    slug = models.SlugField(null=False, unique=True)
     parent = TreeForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.CASCADE)
     #cascade ile ona bağlı şeylerde silinsin demek
     create_at = models.DateTimeField(auto_now_add=True)   #o andaki tarihi ekle
@@ -46,6 +47,9 @@ class Category(MPTTModel):
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
     image_tag.short_description = 'Image'
 
+    def get_absolute_url(self):
+        return reverse('category_detail', kwargs={'slug':self.slug})
+
 
 
 class Apartment(models.Model):
@@ -63,7 +67,7 @@ class Apartment(models.Model):
     price=models.FloatField()
     amount=models.IntegerField()
     detail= RichTextUploadingField()
-    slug = models.SlugField(max_length=150,blank=True)
+    slug = models.SlugField(null=False, unique=True)
     status = models.CharField(max_length=10, choices=STATUS)
     create_at = models.DateTimeField(auto_now_add=True)   #o andaki tarihi ekle
     update_at = models.DateTimeField(auto_now=True)    #her zamanki tarihi ekle
@@ -78,6 +82,9 @@ class Apartment(models.Model):
             return ""
 
     image_tag.short_description = 'Image'
+
+    def get_absolute_url(self):
+        return reverse('apartment_detail', kwargs={'slug': self.slug})
 
 
 class Images(models.Model):
