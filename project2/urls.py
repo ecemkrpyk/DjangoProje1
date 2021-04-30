@@ -34,6 +34,9 @@ urlpatterns = [
     path('apartment/<int:id>/<slug:slug>', views.apartment_detail, name='apartment_detail'),
     path('search/', views.apartment_search, name='apartment_search'),
     path('search_auto/', views.apartment_search_auto, name='apartment_search_auto'),
+    path('logout/', views.logout_view, name='logout_view'),
+    path('login/', views.login_view, name='login_view'),
+
 
 ]
 

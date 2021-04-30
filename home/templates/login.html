@@ -1,0 +1,75 @@
+{%  extends "homebase.html" %}
+{% load i18n %}
+{% block title %} Login - {{ setting.company }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %}{{ setting.description }}{% endblock %}
+
+{% block head %}   <!-- icon eklendi -->
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'  />
+
+{% endblock %}
+
+{% block sidebar %}
+    {% include "sidebar.html" %}
+{% endblock %}
+
+
+
+{% block content %}
+    <div id="breadcrumb">
+       <div class="container">
+           <ul class="breadcrumb">
+               <li> <a href="/">Anasayfa</a></li>
+               <li class="active" > Login</li>
+           </ul>
+       </div>
+    </div>
+
+
+
+    <div class="section">
+    <div class="container" >
+        <div class="row">
+
+         <div class="col-md-12">
+            <h3 class="title">{% trans "Login"%}</h3>
+              {% if messages %}
+                 {% for message in messages %}
+                     <div class="alert alert-{{message.tags}}" role="alert">
+                         {{ message }}
+                     </div>
+                 {% endfor %}
+             {% endif %}
+
+         </div>
+          <div class="col-md-12">
+             <form id="checkout-form" class="clearfix" method="post">
+                 {% csrf_token %}
+                 <div class="col-lg-4">
+                     <label for="fir">User Name</label>
+                     <input name="username" type="text" id="fir">
+                 </div>
+
+                 <div class="col-lg-4">
+                     <label for="last">Password</label>
+                     <input name="password" type="password" id="last">
+                 </div>
+
+                 <input type="submit" value="{% trans "Login" %}">
+
+             </form>
+         </div>
+        </div>
+
+
+        </div>
+     </div>
+    </div>
+
+    </div>
+
+
+
+
+
+{% endblock %}

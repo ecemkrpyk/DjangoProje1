@@ -1,6 +1,7 @@
 import json
 from unicodedata import category
 
+from django.contrib.auth import logout, authenticate, login
 from django.core.checks import messages
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -121,6 +122,32 @@ def apartment_search_auto(request):
         data = 'fail'
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
+
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
+def login_view(request):
+    if request.method=='POST': #post varsa login işlemi gerçekleşir
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect('/')
+
+        else:
+            messages.warning(request, "Login Hatası! Kullanıcı adı ya da şifre yanlış")
+            return HttpResponseRedirect('/login')
+
+
+    category = Category.objects.all()
+    context = {'category': category,
+               }
+    return render(request, 'login.html', context)
+
+
 
 
 
