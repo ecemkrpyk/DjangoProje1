@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin
 
-from apartment.models import Category, Apartment, Images
+from apartment.models import Category, Apartment, Images, Comment
 
 
 class ApartmentImageInline(admin.TabularInline):
@@ -61,10 +61,16 @@ class ImagesAdmin(admin.ModelAdmin):
     readonly_fields = ('image_tag',)
 
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['subject', 'comment', 'apartment', 'user', 'status']
+    list_filter = ['status']
+
+
 
 admin.site.register(Category, CategoryAdmin2)  #categorynin adminde gözükmesini sağlar
 admin.site.register(Apartment, ApartmentAdmin)
 admin.site.register(Images, ImagesAdmin)
+admin.site.register(Comment, CommentAdmin)
 
 
 
