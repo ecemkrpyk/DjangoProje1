@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
 from apartment.models import Apartment, Category, Images, Comment
 from home.forms import SearchForm, SignUpForm
-from home.models import Setting, ContactForm, ContactFormMessage
+from home.models import Setting, ContactForm, ContactFormMessage, UserProfile
 from django.contrib import messages
 
 
@@ -164,6 +164,13 @@ def signup_view(request):
             password = request.POST['password1']
             user = authenticate(request, username=username, password=password)
             login(request, user)
+
+            current_user=request.user
+            data=UserProfile()
+            data.user_id=current_user.id
+            data.image="images/users/user.png" #default resim
+            data.save()
+            messages.success(request,"Hoş Geldiniz..Sitemize başarılı bir şekilde üye oldunuz.")
             return HttpResponseRedirect('/')  # kayıt olduktan sonra anasayfaya gönderiyoruz
 
     form = SignUpForm()
@@ -172,3 +179,11 @@ def signup_view(request):
                'form': form,
                }
     return render(request, 'signup.html', context)
+
+
+
+
+
+
+
+
