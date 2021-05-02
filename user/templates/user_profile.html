@@ -19,8 +19,8 @@
     <div id="breadcrumb">
         <div class="container">
             <ul class="breadcrumb">
-                <li><a href="/">Anasayfa</a></li>
-                <li class="active"> User Profile</li>
+                <li><a href="/">Anasayfa / </a></li>
+                <li class="active">  User Profile</li>
             </ul>
         </div>
     </div>
@@ -44,7 +44,12 @@
                     <table class="shopping-cart-table table">
 
                         <tr>
-                            <th class="text-left"></th>
+
+                            <th class="text-left">
+                                <a href="/user/update" class="primary-btn"> Update Profile</a>
+                                <a href="/user/password" class="primary-btn"> Change Password</a>
+
+                            </th>
                             <td><img src="{{ profile.image.url }}" alt=""></td>
                         </tr>
                         <tr>

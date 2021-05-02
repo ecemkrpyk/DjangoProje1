@@ -34,14 +34,18 @@ def index(request):
 
 
 def hakkimizda(request):
+    category = Category.objects.all()
     setting = Setting.objects.get(pk=1)
-    context = {'setting': setting}
+    context = {'category':category,
+               'setting': setting}
     return render(request, 'hakkimizda.html', context)
 
 
 def referanslar(request):
+    category = Category.objects.all()
     setting = Setting.objects.get(pk=1)
-    context = {'setting': setting}
+    context = {'category':category,
+             'setting': setting}
     return render(request, 'referanslarımız.html', context)
 
 
@@ -60,9 +64,10 @@ def iletisim(request):
             messages.success(request, "Mesajınız başarı ile gönderilmiştir. Teşekkür ederiz")  # flash mesaj
             return HttpResponseRedirect('/iletisim')
 
+    category = Category.objects.all()
     setting = Setting.objects.get(pk=1)
     form = ContactForm()
-    context = {'setting': setting, 'form': form}
+    context = {'category':category,'setting': setting, 'form': form}
     return render(request, 'iletisim.html', context)
 
 
