@@ -1,11 +1,11 @@
-{%  extends "homebase.html" %}
+{% extends "homebase.html" %}
 {% load i18n %}
 {% block title %} Iletişim - {{ setting.company }} {% endblock %}
 {% block keywords %} {{ setting.keywords }} {% endblock %}
 {% block description %}{{ setting.description }}{% endblock %}
 
 {% block head %}   <!-- icon eklendi -->
-    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'  />
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
 
 {% endblock %}
 
@@ -17,53 +17,50 @@
 
 {% block content %}
     <div id="breadcrumb">
-       <div class="container">
-           <ul class="breadcrumb">
-               <li> <a href="/">Anasayfa</a></li>
-               <li class="active" > İletişim</li>
-           </ul>
-       </div>
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Home / </a></li>
+                <li class="active"> Contact</li>
+            </ul>
+        </div>
     </div>
 
 
 
     <div class="section">
-    <div class="container" >
-        <div class="row">
+        <div class="container">
+            <div class="row">
 
-         <div class="col-md-4">
-            <h3 class="title">{% trans "İLETİŞİM FORMU"%}</h3>
-              {% if messages %}
-                 {% for message in messages %}
-                     <div class="alert alert-{{message.tags}}" role="alert">
-                         {{ message }}
-                     </div>
-                 {% endfor %}
-             {% endif %}
+                <div class="col-md-8">
+                    <strong><h3 class="title">{% trans "CONTACT FORM" %}</h3></strong>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
 
 
-             <form id="checkout-form" class="clearfix" method="post">
-                 {% csrf_token %}
-                 {{ form.as_p }}
-                 <input type="submit" value="{% trans "SEND FORM" %}">
-             </form>
-         </div>
+                    <form id="checkout-form" class="clearfix" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="{% trans "SEND FORM" %}">
+                    </form>
+                </div>
+
+
+                <div class="col-md-4">
+                   <strong><h3 class="title">{% trans "CONTACT INFORMATION" %}</h3></strong>
+
+                    {{ setting.contact |safe }} <!--safe kullanmazsan html kodları ile birlikte anlamsız gözükür -->
+                </div>
+
+
+            </div>
         </div>
-
-
-
-
-
-         <div class="col-md-8">
-                 <h3 class="title">{% trans "İLETİŞİM BİLGİLERİMİZ"%}</h3>
-          </div>
-            {{ setting.contact |safe }} <!--safe kullanmazsan html kodları ile birlikte anlamsız gözükür -->
-
-        </div>
-     </div>
     </div>
 
-    </div>
 
 
 

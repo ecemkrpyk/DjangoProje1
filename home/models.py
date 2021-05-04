@@ -65,10 +65,10 @@ class ContactForm(ModelForm): #otomatik form oluşturma için
         model = ContactFormMessage
         fields = ['name', 'email', 'subject', 'message']
         widgets = {
-            'name': TextInput(attrs={'class': 'input', 'placeholder': 'Name & Surname'}),
-            'subject': TextInput(attrs={'class': 'input', 'placeholder': 'Subject'}),
-            'email': TextInput(attrs={'class': 'input', 'placeholder': 'Email Address'}),
-            'message': Textarea(attrs={'class': 'input', 'placeholder': 'Your Message', 'rows': '5'}),
+            'name': TextInput(attrs={'class': 'form-control mb-30', 'placeholder': 'Name & Surname'}),
+            'subject': TextInput(attrs={'class': 'form-control mb-30', 'placeholder': 'Subject'}),
+            'email': TextInput(attrs={'class': 'form-control mb-30', 'placeholder': 'Email Address'}),
+            'message': Textarea(attrs={'class': 'form-control mb-30', 'placeholder': 'Your Message', 'rows': '5'}),
         }
 
 class UserProfile(models.Model): #userın ekstra bilgilere ihtiyacımız olabilir

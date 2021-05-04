@@ -1,40 +1,36 @@
-{%  load static %}
-<!-- Banner Section Begin -->
+{% load static %}
+
+<section class="women-banner spad">
+    <div class="container-fluid">
+        <td>&nbsp;</td>
+
+        <div class="row">
+
+            <div class="col-lg-8">
+                <h4>DAYS OF THE DAY</h4>
+                <td>&nbsp;</td>
 
 
-    <!-- Women Banner Section Begin -->
-    <section class="women-banner spad">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="product-large set-bg" data-setbg="{% static 'img/products/women-large.jpg'%}">
-                        <h2>Women’s</h2>
-                        <a href="#">Discover More</a>
-                    </div>
-                </div>
-                <div class="col-lg-8 offset-lg-1">
-                    <h4>DAYS OF THE DAY</h4>
-
-
-                    <div class="product-slider owl-carousel">
-                        {% for rs in dayapartments %}
+                <div class="product-slider owl-carousel">
+                    {% for rs in dayapartments %}
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="{{rs.image.url}}" alt="" style="height: 300px">
+                                <img src="{{ rs.image.url }}" alt="" style="height: 300px">
                                 <div class="sale">Sale</div>
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="/apartment/{{ rs.id }}/{{ rs.slug }}">+ Quick View</a></li>
+                                    <li class="quick-view"><a href="/apartment/{{ rs.id }}/{{ rs.slug }}">+ Quick
+                                        View</a></li>
                                     <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
                                 <div class="catagory-name">Coat</div>
                                 <a href="#">
-                                    <h5>{{ rs.title}}</h5>
+                                    <h5>{{ rs.title }}</h5>
                                 </a>
                                 <div class="product-price">
                                     ${{ rs.price }}
@@ -42,135 +38,135 @@
                                 </div>
                             </div>
                         </div>
-                        {% endfor %}
+                    {% endfor %}
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Women Banner Section End -->
-
-
-
-    <!-- Man Banner Section Begin -->
-    <section class="man-banner spad">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-8">
-                    <h4> LATEST APARTMENTS</h4>
-
-
-                    <div class="product-slider owl-carousel">
-                          {% for rs in lastapartments %}
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="{{rs.image.url}}" alt="" style="height: 300px">
-                                <div class="sale">Sale</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="/apartment/{{ rs.id }}/{{ rs.slug }}">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Coat</div>
-                                <a href="#">
-                                    <h5>{{rs.title}}</h5>
-                                </a>
-                                <div class="product-price">
-                                    ${{rs.price}}
-
-                                </div>
-                            </div>
-                        </div>
-
-                        {% endfor %}
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- Man Banner Section End -->
-
-  <section class="man-banner spad">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-8">
-                    <h4>PICKED FOR YOU</h4>
-                    <div class="product-slider owl-carousel">
-                        {% for rs in randomapartments %}
-
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="{{rs.image.url}}" alt="" style="height: 300px">
-                                <div class="sale">Sale</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="/apartment/{{ rs.id }}/{{ rs.slug }}">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Coat</div>
-                                <a href="#">
-                                    <h5>{{rs.title}}</h5>
-                                </a>
-                                <div class="product-price">
-                                    ${{rs.price}}
-
-                                </div>
-                            </div>
-                        </div>
-
-                        {% endfor %}
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Partner Logo Section Begin -->
-    <div class="partner-logo">
-        <div class="container">
-            <div class="logo-carousel owl-carousel">
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="{% static 'img/logo-carousel/logo-1.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="{% static 'img/logo-carousel/logo-2.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="{% static 'img/logo-carousel/logo-3.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="{% static 'img/logo-carousel/logo-4.png'%}" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="{% static 'img/logo-carousel/logo-5.png'%}" alt="">
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Partner Logo Section End -->
+</section>
+
+
+<section class="man-banner spad">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <h4> LATEST APARTMENTS</h4>
+                <td>&nbsp;</td>
+
+
+                <div class="product-slider owl-carousel">
+                    {% for rs in lastapartments %}
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="{{ rs.image.url }}" alt="" style="height: 300px">
+                                <div class="sale">Sale</div>
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="/apartment/{{ rs.id }}/{{ rs.slug }}">+ Quick
+                                        View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">Coat</div>
+                                <a href="#">
+                                    <h5>{{ rs.title }}</h5>
+                                </a>
+                                <div class="product-price">
+                                    ${{ rs.price }}
+
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="man-banner spad">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <h4>PICKED FOR YOU</h4>
+                <td>&nbsp;</td>
+
+                <div class="product-slider owl-carousel">
+                    {% for rs in randomapartments %}
+
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="{{ rs.image.url }}" alt="" style="height: 300px">
+                                <div class="sale">Sale</div>
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="/apartment/{{ rs.id }}/{{ rs.slug }}">+ Quick
+                                        View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">Coat</div>
+                                <a href="#">
+                                    <h5>{{ rs.title }}</h5>
+                                </a>
+                                <div class="product-price">
+                                    ${{ rs.price }}
+
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<div class="partner-logo">
+    <div class="container">
+        <div class="logo-carousel owl-carousel">
+            <div class="logo-item">
+                <div class="tablecell-inner">
+                    <img src="{% static 'img/logo-carousel/logo-1.png' %}" alt="">
+                </div>
+            </div>
+            <div class="logo-item">
+                <div class="tablecell-inner">
+                    <img src="{% static 'img/logo-carousel/logo-2.png' %}" alt="">
+                </div>
+            </div>
+            <div class="logo-item">
+                <div class="tablecell-inner">
+                    <img src="{% static 'img/logo-carousel/logo-3.png' %}" alt="">
+                </div>
+            </div>
+            <div class="logo-item">
+                <div class="tablecell-inner">
+                    <img src="{% static 'img/logo-carousel/logo-4.png' %}" alt="">
+                </div>
+            </div>
+            <div class="logo-item">
+                <div class="tablecell-inner">
+                    <img src="{% static 'img/logo-carousel/logo-5.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

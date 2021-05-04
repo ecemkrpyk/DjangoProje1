@@ -3,13 +3,14 @@
 <section class="hero-section">
 
     <div class="hero-items owl-carousel">
+    <td>&nbsp;</td>
          {% for rs in sliderdata  %}
 
             <div class="single-hero-items set-bg" data-setbg="{{  rs.image.url }}">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-5">
-                            <span>Bag,kids</span>
+
+                         <div class="col-lg-8">
                             <h1> {{  rs.title }} </h1>
                             <p>{{ rs.description }} </p>
                             <a href="/apartment/{{ rs.id }}/{{ rs.slug }}" class="primary-btn">Satın Al</a>
