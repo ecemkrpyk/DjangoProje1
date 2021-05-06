@@ -7,6 +7,7 @@ from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin
 from apartment.models import Category, Apartment, Images, Comment
 
 
+
 class ApartmentImageInline(admin.TabularInline):
     model = Images   #ımages tablosundan
     extra = 5   #galeri extra kaç resimden oluştuğu
@@ -72,6 +73,8 @@ admin.site.register(Category, CategoryAdmin2)  #categorynin adminde gözükmesin
 admin.site.register(Apartment, ApartmentAdmin)
 admin.site.register(Images, ImagesAdmin)
 admin.site.register(Comment, CommentAdmin)
+
+
 
 
 

@@ -103,6 +103,7 @@ def addcontent(request):
             current_user = request.user
             data=Apartment()
             data.user_id=current_user.id
+
             data.title=form.cleaned_data['title']
             data.keywords=form.cleaned_data['keywords']
             data.description=form.cleaned_data['description']
@@ -114,6 +115,7 @@ def addcontent(request):
             data.amount = form.cleaned_data['amount']
             data.status='False'
             data.save()
+
             messages.success(request, 'Başarıyla eklendi')
             return  HttpResponseRedirect('/user/contents')
         else:

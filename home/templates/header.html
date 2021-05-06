@@ -26,12 +26,16 @@
 
 
             <div class="ht-right">
+
+
                 {% if user.id is not None %}
                     <a href="#" class="login-panel">
 
                         <img src="{{ request.user.profile.image.url }}">
 
-                        </i>{{ user.first_name }}</a>
+                        <strong>{{ user.first_name }}</strong>
+
+                    </a>
 
                 {% else %}
                     <a href="/login/" class="login-panel"><i class="fa fa-user"></i>Login</a>
@@ -40,6 +44,8 @@
 
 
                 <div class="top-social">
+                    <strong><a href="/sss"> FAQ</a> </strong>
+
                     <a href="#"><i class="ti-facebook"></i></a>
                     <a href="#"><i class="ti-twitter-alt"></i></a>
                     <a href="#"><i class="ti-linkedin"></i></a>
@@ -80,9 +86,9 @@
                             </select>
 
 
-                                <input id="query" name="query" type="text" placeholder="What do you need?">
+                            <input id="query" name="query" type="text" placeholder="What do you need?">
 
-                                <button type="button"><i class="ti-search"></i></button>
+                            <button type="button"><i class="ti-search"></i></button>
 
 
                         </form>

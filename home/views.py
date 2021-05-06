@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
 from apartment.models import Apartment, Category, Images, Comment
 from home.forms import SearchForm, SignUpForm
-from home.models import Setting, ContactForm, ContactFormMessage, UserProfile
+from home.models import Setting, ContactForm, ContactFormMessage, UserProfile, FAQ
 from django.contrib import messages
 
 
@@ -182,6 +182,28 @@ def signup_view(request):
                'form': form,
                }
     return render(request, 'signup.html', context)
+
+
+def faq(request):
+    category=Category.objects.all()
+    faq=FAQ.objects.all().order_by('ordernumber')
+    context={
+        'category': category,
+        'faq':faq,
+    }
+
+    return  render(request, 'faq.html', context)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
