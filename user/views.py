@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 
-from apartment.models import Category, Comment, Apartment, ContentForm
+from apartment.models import Category, Comment, Apartment, ContentForm, ContentImageForm, Images
 from home.models import UserProfile
 
 from user.forms import UserUpdateForm, ProfileUpdateForm
@@ -162,15 +162,33 @@ def contentdelete(request,id):
     return  HttpResponseRedirect('/user/contents')
 
 
+@login_required(login_url='/login')
+def contentaddimage(request,id):
+    if request.method=='POST':
+        lasturl=request.META.get('HTTP_REFERER') #geldiğimiz yere gideriz
+        form=ContentImageForm(request.POST, request.FILES) #upload edebilmek için
+        if form.is_valid():
+            data=Images()
+            data.title=form.cleaned_data['title']
+            data.apartment_id=id
+            data.image=form.cleaned_data['image']
+            data.save()
+            messages.success(request, 'resimler başarılı şekilde yüklendi')
+            return  HttpResponseRedirect(lasturl)
+        else:
+            messages.warning(request, 'resimler yüklenemedi')
+            return HttpResponseRedirect(lasturl)
 
-
-
-
-
-
-
-
-
+    else:
+        content= Apartment.objects.get(id=id)
+        images= Images.objects.filter(apartment_id=id)
+        form=ContentImageForm()
+        context={
+            'content': content,
+            'images': images,
+            'form': form,
+        }
+        return render(request, 'content_gallery.html', context)
 
 
 

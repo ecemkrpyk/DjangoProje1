@@ -7,6 +7,7 @@
 {% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
 
 {% block content %}
+{% load static  %}
 
 
     <div id="breadcrumb">
@@ -44,6 +45,7 @@
 
                             <th class="text-left">Image</th>
                             <th class="text-left">Title</th>
+                            <th class="text-left">Gallery</th>
                             <th class="text-left">Category</th>
                             <th class="text-left">Price</th>
                             <th class="text-left">Description</th>
@@ -55,13 +57,22 @@
 
                                 <td class="text-left">
 
-                                        <img src="{{ rs.image.url }}" style="height: 80px;">
+                                        <img src="{{ rs.image.url }}" style="height: 40px;">
 
                                 </td>
                                 <td class="text-left">
                                      <a href="/apartment/{{ rs.id }}/{{ rs.slug }}">
                                     {{ rs.title }}
                                      </a>
+                                </td>
+
+                                <td class="text-left">
+
+                                    <a href="javascript:;" onclick="window.open('/user/contentaddimage/{{ rs.id }}', 'gallery', 'height=600,width=800, top=50,left=150')">
+                                       <img src="{% static '' %}img/gallery.png" height="40">
+
+                                    </a>
+
                                 </td>
                                 <td class="text-left">{{ rs.category }} </td>
                                 <td class="text-left">{{ rs.price }} </td>
