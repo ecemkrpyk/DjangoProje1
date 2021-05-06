@@ -1,8 +1,9 @@
+from ckeditor.widgets import CKEditorWidget
 from django.contrib.auth.models import User
 from django.db import models
 
-# Create your models here.
-from django.forms import ModelForm
+
+from django.forms import ModelForm, TextInput, Select, FileInput
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -40,9 +41,6 @@ class Category(MPTTModel):
         return ' / '.join(full_path[::-1])
 
 
-
-
-
     def image_tag(self):
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
     image_tag.short_description = 'Image'
@@ -58,6 +56,8 @@ class Apartment(models.Model):
         ('False', 'Hayır'),
 
     )
+
+    user=models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     #category tablosu ile bir ilişki kuruyoruz, category_id eklenmiş olur
     category=models.ForeignKey(Category,on_delete=models.CASCADE)
     title = models.CharField(blank=True,max_length=150)
@@ -65,7 +65,7 @@ class Apartment(models.Model):
     description = models.CharField(blank=True,max_length=255)
     image = models.ImageField(blank=True, upload_to='images/') #klasör ismini değiştirebilirsin
     price=models.FloatField()
-    amount=models.IntegerField()
+    amount=models.IntegerField(blank=True)
     detail= RichTextUploadingField()
     slug = models.SlugField(null=False, unique=True)
     status = models.CharField(max_length=10, choices=STATUS)
@@ -83,7 +83,7 @@ class Apartment(models.Model):
 
     image_tag.short_description = 'Image'
 
-    def get_absolute_url(self):
+    def get_absolute_url(self): #otomatik slug oluşturur
         return reverse('apartment_detail', kwargs={'slug': self.slug})
 
 
@@ -124,6 +124,28 @@ class CommentForm(ModelForm):
     class Meta:
         model=Comment
         fields=['subject', 'comment', 'rate']
+
+
+#user bir içerik ekleyeceği zaman
+class ContentForm(ModelForm):
+
+    class Meta:
+        model = Apartment #form apartmenta bağlı
+        fields = ('category','title', 'keywords', 'description', 'image', 'detail', 'slug','price','amount')
+        widgets = {
+            'title'     : TextInput(attrs={'class': 'form-control mb-30','placeholder':'title'}),
+            'slug'   : TextInput(attrs={'class': 'form-control mb-30','placeholder':'slug'}),
+            'keywords': TextInput(attrs={'class': 'form-control mb-30', 'placeholder': 'keywords'}),
+            'price': TextInput(attrs={'class': 'form-control mb-30', 'placeholder': 'price'}), #textınputu düzelt sonra
+            'description': TextInput(attrs={'class': 'form-control mb-30', 'placeholder': 'description'}),
+            'amount': TextInput(attrs={'class': 'form-control mb-30', 'placeholder': 'amount'}),
+            'category'      : Select(attrs={'class': 'form-control mb-30','placeholder':'category'} ),
+            'image'     : FileInput(attrs={'class': 'form-control mb-30', 'placeholder': 'image', }),
+            'detail': CKEditorWidget(), #ckeditor input
+        }
+
+
+
 
 
 

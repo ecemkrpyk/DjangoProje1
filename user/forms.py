@@ -1,9 +1,11 @@
+from ckeditor.widgets import CKEditorWidget
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
-from django.forms import TextInput, EmailInput, Select, FileInput
-
+from django.forms import TextInput, EmailInput, Select, FileInput, ModelForm
 
 from django import forms
+
+from apartment.models import Apartment
 from home.models import UserProfile
 
 
@@ -36,7 +38,6 @@ class ProfileUpdateForm(forms.ModelForm): #userprofile'dan gelir
             'country'   : TextInput(attrs={'class': 'form-control mb-30','placeholder':'country' }),
             'image'     : FileInput(attrs={'class': 'form-control mb-30', 'placeholder': 'image', }),
         }
-
 
 
 

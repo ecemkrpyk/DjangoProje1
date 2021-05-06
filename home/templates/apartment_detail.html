@@ -39,7 +39,8 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="product-pic-zoom">
-                                <img class="product-big-img" src="{{ apartment.image.url }}" alt="">
+                                <img class="product-big-img" src="{{ apartment.image.url }}" alt=""
+                                     style="height: 300px">
                                 <div class="zoom-icon">
                                     <i class="fa fa-search-plus"></i>
                                 </div>
@@ -49,7 +50,7 @@
 
                                     {% for rs in images %}
                                         <div class="pt active" data-imgbigurl="{{ rs.image.url }}"><img
-                                                src="{{ rs.image.url }}" alt=""></div>
+                                                src="{{ rs.image.url }}" alt="" style="height: 100px"></div>
 
                                     {% endfor %}
 
@@ -81,7 +82,7 @@
                                     <div class="pro-qty">
                                         <input type="number" min="0" max="{{ apartment.amount }}" value="1">
                                     </div>
-                                    <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                                    <a href="#" class="primary-btn pd-cart">{{ apartment.category }} </a>
                                 </div>
 
                                 <div class="pd-share">
@@ -178,20 +179,14 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="personal-rating">
-                                                    <h6>Your Rating:</h6>
-                                                    <div class="rating">
-                                                        <input type="radio" id="star5" name="rate" value="5"/> <label
-                                                            for="star5"></label>
-                                                        <input type="radio" id="star4" name="rate" value="5"/> <label
-                                                            for="star4"></label>
-                                                        <input type="radio" id="star3" name="rate" value="5"/> <label
-                                                            for="star3"></label>
-                                                        <input type="radio" id="star2" name="rate" value="5"/> <label
-                                                            for="star2"></label>
-                                                        <input type="radio" id="star1" name="rate" value="5"/> <label
-                                                            for="star1"></label>
-                                                    </div>
+                                                <div class="rating"><input type="radio" name="rate" value="5"
+                                                                           id="5"><label for="5">☆</label> <input
+                                                        type="radio" name="rate" value="4" id="4"><label
+                                                        for="4">☆</label> <input type="radio" name="rate" value="3"
+                                                                                 id="3"><label for="3">☆</label> <input
+                                                        type="radio" name="rate" value="2" id="2"><label
+                                                        for="2">☆</label> <input type="radio" name="rate" value="1"
+                                                                                 id="1"><label for="1">☆</label>
                                                 </div>
 
 
@@ -212,6 +207,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </section>
     <!-- Product Shop Section End -->
 

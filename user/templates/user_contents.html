@@ -1,0 +1,103 @@
+{% extends 'homebase.html' %}
+
+{% block title %}  User Contents {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+
+{% block content %}
+
+
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Home / </a></li>
+                <li class="active"> User Contents</li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="section">
+
+        <div class="container">
+
+            <div class="row">
+
+
+                <div class="col-md-3">
+                    {% include "user_panel.html" %}
+                </div>
+                <div class="col-md-9">
+                    <div class="section-title">
+                        <h4 class="title">User Contents List <a class="primary-btn" href="/user/addcontent">Add
+                            Content</a></h4>
+
+                    </div>
+                    <table class="shopping-cart-table table">
+                        <tr>
+
+
+                            <th class="text-left">Image</th>
+                            <th class="text-left">Title</th>
+                            <th class="text-left">Category</th>
+                            <th class="text-left">Price</th>
+                            <th class="text-left">Description</th>
+
+
+                        </tr>
+                        {% for rs in contents %}
+                            <tr>
+
+                                <td class="text-left">
+
+                                        <img src="{{ rs.image.url }}" style="height: 30px;">
+
+                                </td>
+                                <td class="text-left">
+                                     <a href="/apartment/{{ rs.id }}/{{ rs.slug }}">
+                                    {{ rs.title }}
+                                     </a>
+                                </td>
+                                <td class="text-left">{{ rs.category }} </td>
+                                <td class="text-left">{{ rs.price }} </td>
+                                <td class="text-left">{{ rs.description }} </td>
+
+
+
+                                <td class="text-left">
+                                    <a class="primary-btn" href="/user/contentedit/{{ rs.id }}"
+                                    > Edit </a>
+                                </td>
+
+                                <td class="text-left">
+                                    <a onclick="return confirm('Silinecek! Emin misiniz?')"
+                                       class="primary-btn" href="/user/contentdelete/{{ rs.id }}"> Delete </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

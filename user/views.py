@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 
-from apartment.models import Category, Comment
+from apartment.models import Category, Comment, Apartment, ContentForm
 from home.models import UserProfile
 
 from user.forms import UserUpdateForm, ProfileUpdateForm
@@ -78,6 +78,97 @@ def deletecomment(request,id):
     Comment.objects.filter(id=id,user_id=current_user.id).delete()
     messages.success(request, 'Yorum silindi')
     return HttpResponseRedirect('/user/comments')
+
+
+
+
+
+@login_required(login_url='/login')
+def contents(request):
+    category=Category.objects.all()
+    current_user = request.user
+    contents= Apartment.objects.filter(user_id=current_user.id) #userid yerine category id yazmıştın
+    #mevcut user'ın contentleri çağırılır
+
+    context = {'category': category,
+               'contents': contents,
+               }
+    return render(request, 'user_contents.html', context)
+
+@login_required(login_url='/login')
+def addcontent(request):
+    if request.method=='POST':
+        form=ContentForm(request.POST, request.FILES)
+        if form.is_valid():
+            current_user = request.user
+            data=Apartment()
+            data.user_id=current_user.id
+            data.title=form.cleaned_data['title']
+            data.keywords=form.cleaned_data['keywords']
+            data.description=form.cleaned_data['description']
+            data.image=form.cleaned_data['image']
+            data.category=form.cleaned_data['category']
+            data.slug=form.cleaned_data['slug']
+            data.detail=form.cleaned_data['detail']
+            data.price = form.cleaned_data['price']
+            data.amount = form.cleaned_data['amount']
+            data.status='False'
+            data.save()
+            messages.success(request, 'Başarıyla eklendi')
+            return  HttpResponseRedirect('/user/contents')
+        else:
+            messages.error(request,'İçerik eklenemedi')
+            return HttpResponseRedirect('/user/addcontent') #hata vermişse add contente gidecek
+
+    else:
+        category = Category.objects.all()
+        form=ContentForm()
+        context= {
+            'category': category,
+            'form': form,
+        }
+        return render(request, 'user_addcontent.html', context)
+
+
+
+@login_required(login_url='/login')
+def contentedit(request,id):
+    content= Apartment.objects.get(id=id)
+    if request.method=='POST':
+        form=ContentForm(request.POST, request.FILES, instance=content)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'içerik güncellendi')
+            return  HttpResponseRedirect('/user/contents')
+        else:
+            messages.error(request, 'içerik güncellenemedi')
+            return HttpResponseRedirect('/user/contentedit')
+    else:
+        category=Category.objects.all()
+        form = ContentForm(instance=content) #İÇERİĞİ DOLDURUYORUZ, FORM DOLU GELİR
+        context = {
+            'category': category,
+            'form': form,
+        }
+        return render(request, 'user_addcontent.html', context)
+
+@login_required(login_url='/login')
+def contentdelete(request,id):
+    current_user = request.user
+    Apartment.objects.filter(id=id, user_id=current_user.id). delete()
+    messages.success(request, 'içerik silindi')
+    return  HttpResponseRedirect('/user/contents')
+
+
+
+
+
+
+
+
+
+
+
 
 
 

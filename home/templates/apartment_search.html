@@ -37,8 +37,8 @@
               </tr>
               {% for rs in apartments %}
                   <tr>
-                      <td> <a href="/aparment/{{ rs.id }}/{{ rs.slug }}"> <img src="{{ rs.image.url }}" style="height: 200px" alt=""></a> </td>
-                      <td> <h4 class="apartment-name"><a href="/aparment/{{ rs.id }}/{{ rs.slug }}"> {{ rs.title }}</a> </h4></td>
+                      <td> <a href="/apartment/{{ rs.id }}/{{ rs.slug }}"> <img src="{{ rs.image.url }}" style="height: 200px" alt=""></a> </td>
+                      <td> <h4 class="apartment-name"><a href="/apartment/{{ rs.id }}/{{ rs.slug }}"> {{ rs.title }}</a> </h4></td>
                       <td> <a href="/category/{{ rs.category.id }}/{{ rs.category.slug }}"> {{ rs.category }}</a> </td>
                       <td><h4>${{ rs.price }}</h4> </td>
                   </tr>

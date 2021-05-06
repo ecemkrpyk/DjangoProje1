@@ -25,14 +25,18 @@ urlpatterns = [
     path('home/', include('home.urls')),
     path('apartment/', include('apartment.urls')),
     path('user/', include('user.urls')),
+
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 
     path('hakkimizda/', views.hakkimizda, name='hakkimizda'),
     path('referanslar/', views.referanslar, name='referanslar'),
     path('iletisim/', views.iletisim, name='iletisim'),
+
     path('category/<int:id>/<slug:slug>', views.category_apartments, name='category_apartments'),
     path('apartment/<int:id>/<slug:slug>', views.apartment_detail, name='apartment_detail'),
+
+
     path('search/', views.apartment_search, name='apartment_search'),
     path('search_auto/', views.apartment_search_auto, name='apartment_search_auto'),
     path('logout/', views.logout_view, name='logout_view'),

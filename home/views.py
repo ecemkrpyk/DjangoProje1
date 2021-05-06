@@ -102,8 +102,6 @@ def apartment_search(request):
         if form.is_valid():
             category = Category.objects.all()
             query = form.cleaned_data['query']  # veriyi aldık
-
-            # apartments=Apartment.objects.filter(title__icontains=query) #büyük küçük harf dikkate almadan arama yapar
             catid = form.cleaned_data['catid']
 
             if catid == 0:

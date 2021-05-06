@@ -23,6 +23,7 @@ def addcomment(request, id):
          data = Comment()  #model ile bağlantı kur
          data.user_id= current_user.id
          data.apartment_id= id
+
          data.subject = form.cleaned_data['subject'] #bu 3 eleman geldiyse form valid dir
          data.comment = form.cleaned_data['comment']
          data.rate = form.cleaned_data['rate']
