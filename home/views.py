@@ -2,6 +2,7 @@ import json
 from unicodedata import category
 
 from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.models import User
 from django.core.checks import messages
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -15,14 +16,16 @@ from django.contrib import messages
 
 def index(request):
     setting = Setting.objects.get(pk=1)
-    sliderdata = Apartment.objects.all()[:4]  # 4 tane veri getirir
+    sliderdata = Apartment.objects.filter(status='True')[:4]  # 4 tane veri getirir
     category = Category.objects.all()
-    dayapartments = Apartment.objects.all()[:4]
-    lastapartments = Apartment.objects.all().order_by('-id')[:4]
-    randomapartments = Apartment.objects.all().order_by('?')[:4]
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    dayapartments = Apartment.objects.filter(status='True')[:4]
+    lastapartments = Apartment.objects.filter(status='True').order_by('-id')[:4]
+    randomapartments = Apartment.objects.filter(status='True').order_by('?')[:4]
 
     context = {'setting': setting,
                'category': category,
+               'userprofile':userprofile,
                'page': 'home',
                'sliderdata': sliderdata,
                'dayapartments': dayapartments,
@@ -74,7 +77,7 @@ def iletisim(request):
 def category_apartments(request, id, slug):
     category = Category.objects.all()
     categorydata = Category.objects.get(pk=id)
-    apartments = Apartment.objects.filter(category_id=id)
+    apartments = Apartment.objects.filter(category_id=id,status='True')
 
     context = {'apartments': apartments,
                'category': category,

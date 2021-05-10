@@ -24,14 +24,13 @@
     <div class="header-top">
         <div class="container">
 
-
             <div class="ht-right">
 
 
                 {% if user.id is not None %}
                     <a href="#" class="login-panel">
 
-                        <img src="{{ request.user.profile.image.url }}">
+                        <img src="{{ userprofile.image.url }}" style="height:50px; border-radius: 45px ">
 
                         <strong>{{ user.first_name }}</strong>
 
@@ -42,7 +41,16 @@
 
                 {% endif %}
 
-
+                <div class="lan-selector">
+                    <select class="language_drop" name="countries" id="countries" style="width:300px;">
+                        <option value='yt' data-image="/static/img/flag-1.jpg" data-imagecss="flag yt"
+                                data-title="English">English
+                        </option>
+                        <option value='yu' data-image="/static/img/flag-2.jpg" data-imagecss="flag yu"
+                                data-title="Bangladesh">German
+                        </option>
+                    </select>
+                </div>
                 <div class="top-social">
                     <strong><a href="/sss"> FAQ</a> </strong>
 
@@ -61,15 +69,15 @@
     <div class="container">
         <div class="inner-header">
             <div class="row">
-
                 <div class="col-lg-7 col-md-7">
                     <div class="advanced-search">
                         <form action="/search/" method="post">
                             {% csrf_token %}
 
                             {% load mptt_tags %}
-                            <select name="catid" class="input search-categories">
-                                <option value="0">All Categories</option>
+
+                            <select name="catid" class="category-btn">
+
 
                                 {% recursetree category %}
                                     {% if node.is_leaf_node %}
@@ -84,19 +92,21 @@
 
                                 {% endrecursetree %}
                             </select>
+                            <div class="input-group">
 
 
-                            <input id="query" name="query" type="text" placeholder="What do you need?">
+                                <input  id="query" name="query" type="text" placeholder="What do you need?">
 
-                            <button type="button"><i class="ti-search"></i></button>
-
-
+                                <button type="button"><i class="ti-search"></i></button>
+                            </div>
                         </form>
                     </div>
                 </div>
-
-
             </div>
         </div>
+
+
     </div>
+
+
 </header>

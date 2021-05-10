@@ -32,7 +32,7 @@
             <div class="row">
 
                 <div class="col-md-12">
-                    <h3 class="title">{% trans "Login" %}</h3>
+                    <tr>&ensp;</tr>
                     {% if messages %}
                         {% for message in messages %}
                             <div class="alert alert-{{ message.tags }}" role="alert">
@@ -46,14 +46,23 @@
                     <form id="checkout-form" class="clearfix" method="post">
                         {% csrf_token %}
                         <div class="col-lg-4">
-                            <label for="fir">User Name</label>
+                            <strong><label for="fir">User Name</label></strong>
+                            <tr>&ensp;</tr>
                             <input name="username" type="text" id="fir">
                         </div>
-
+                        <tr>&ensp;</tr>
                         <div class="col-lg-4">
-                            <label for="last">Password</label>
+                            <strong> <label for="last">Password</label></strong>
+                            <tr>&ensp;</tr>
+                            <tr>&ensp;</tr>
                             <input name="password" type="password" id="last">
                         </div>
+
+                        </p>
+                        </p>
+
+                        <tr>&ensp;</tr>
+
 
                         <input type="submit" value="{% trans "Login" %}">
 

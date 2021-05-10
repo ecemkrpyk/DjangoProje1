@@ -4,6 +4,11 @@
 {% block description %} {{ setting.description }} {% endblock %}
 {% block keywords %} {{ setting.keywords }} {% endblock %}
 
+{% block head %}   <!-- icon eklendi -->
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
+
+{% endblock %}
+
 {% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
 
 {% block content %}
@@ -34,6 +39,8 @@
 
                     <div class="section-title">
                         <h3 class="title">User Profile Update</h3>
+                        <tr> &nbsp;</tr>
+                        <hr>
                     </div>
                     <div class=" content-section">
                         <div class="text-center">

@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-5 col-md-5 text-right">
-                                <p>Show 01- 09 Of 36 Product</p>
+
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                             <div class="col-lg-8 col-sm-3">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="{{ rs.image.url}}" alt=""  style="height: 300px" >
+                                        <img src="{{ rs.image.url}}" alt=""  style="height: 400px;width: 400px" >
                                         <div class="sale pp-sale">Sale</div>
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
@@ -74,13 +74,13 @@
                                         </ul>
                                     </div>
                                     <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
+                                        <div class="catagory-name">{{   categorydata.title }}</div>
                                         <a href="/apartment/{{ rs.id }}/{{ rs.slug }}">
                                             <h5>{{ rs.title }}</h5>
                                         </a>
                                         <div class="product-price">
-                                            ${{ rs.price }}
-                                            <span>${{ rs.price }}</span>
+                                            {{ rs.price }}
+
                                         </div>
                                     </div>
                                 </div>

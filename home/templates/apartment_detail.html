@@ -40,7 +40,7 @@
                         <div class="col-lg-6">
                             <div class="product-pic-zoom">
                                 <img class="product-big-img" src="{{ apartment.image.url }}" alt=""
-                                     style="height: 300px">
+                                     style="height: 400px; width: 300px">
                                 <div class="zoom-icon">
                                     <i class="fa fa-search-plus"></i>
                                 </div>
@@ -50,7 +50,7 @@
 
                                     {% for rs in images %}
                                         <div class="pt active" data-imgbigurl="{{ rs.image.url }}"><img
-                                                src="{{ rs.image.url }}" alt="" style="height: 100px"></div>
+                                                src="{{ rs.image.url }}" alt="" style="height: 150px ; width: 200px"></div>
 
                                     {% endfor %}
 
@@ -75,24 +75,17 @@
                                 </div>
                                 <div class="pd-desc">
                                     <p>{{ apartment.description }}</p>
-                                    <h4>${{ apartment.price }} <span>{{ apartment.price }}</span></h4>
+                                    <h4>{{ apartment.price }} </h4>
                                 </div>
 
                                 <div class="quantity">
                                     <div class="pro-qty">
                                         <input type="number" min="0" max="{{ apartment.amount }}" value="1">
                                     </div>
-                                    <a href="#" class="primary-btn pd-cart">{{ apartment.category }} </a>
+                                    <a href="/category/{{ apartment.category_id }}/{{ apartment.category.slug }}" class="primary-btn pd-cart">{{ apartment.category }} </a>
                                 </div>
 
-                                <div class="pd-share">
 
-                                    <div class="pd-social">
-                                        <a href="#"><i class="ti-facebook"></i></a>
-                                        <a href="#"><i class="ti-twitter-alt"></i></a>
-                                        <a href="#"><i class="ti-linkedin"></i></a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -119,9 +112,7 @@
                                                 <p> {{ apartment.detail |safe }}   </p>
 
                                             </div>
-                                            <div class="col-lg-5">
-                                                <img src="img/product-single/tab-desc.jpg" alt="">
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
